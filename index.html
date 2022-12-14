@@ -1,1 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"/><link rel="icon" href="/favicon.ico"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#000000"/><meta name="description" content="Web site created using create-react-app"/><link rel="apple-touch-icon" href="/logo192.png"/><link rel="manifest" href="/manifest.json"/><title>React App</title><script defer="defer" src="/static/js/main.48b25a1a.js"></script><link href="/static/css/main.04d6d53c.css" rel="stylesheet"></head><body><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"></div></body></html>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Joystick Controller for ESP8266</title>
+
+        <meta charset="utf-8">
+        <title>Single toggle</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/virtual-joystick/0.1.5/virtualjoystick.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/7.17.1/firebase-database.js"></script>
+
+        <script src = "script.js"></script>
+        <link rel="stylesheet" type="text/css" href ="style.css">
+    </head>
+    <body>
+        <h1>CAR RC Control</h1>
+        <script src="http://rawgit.com/jeromeetienne/virtualjoystick.js/master/virtualjoystick.js"></script>
+
+        <div id="joystick">
+          <h2>Joystick</h2>
+      
+          <div id="joystick-container">
+            <div id="joystick-center"></div>
+            <div id="joystick-handle"></div>
+          </div>
+      
+          <div id="joystick-buttons">
+            <button id="forward-button">Forward</button>
+            <button id="backward-button">Backward</button>
+            <button id="left-button">Left</button>
+            <button id="right-button">Right</button>
+          </div>
+        </div>
+    </body>
+</html>
