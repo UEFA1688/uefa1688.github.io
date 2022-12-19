@@ -4,23 +4,118 @@
     <title>Car Control</title>      
     <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
-	<link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
+    <style>
+    #navbar-iframe {
+    height: 0px;
+    visibility: hidden;
+    display: none;
+    }
+      body {
+        background-image: url("https://awsinsurance.com/wp-content/uploads/2018/03/pexels-photo-228094.jpeg");
+      }
+      button {
+        background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+        border: 0;
+        border-radius: 10px;
+        box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
+        box-sizing: border-box;
+        color: #fff;
+        cursor: pointer;
+        font-family: "Kanit", sans-serif;
+        padding: 25px;
+        transition: box-shadow .15s, transform .15s;
+        user-select: none;
+        -webkit-user-select: none;
+        touch-action: manipulation;
+        white-space: nowrap;
+        will-change: box-shadow, transform;
+        font-size: 32px;
+        bottom: 10px;
+      }
+      button:active {
+        transform: translate(5px, 5px);
+        box-shadow: #e03cbc 0 3px 7px inset;
+        background-image: radial-gradient(100% 100% at 100% 0, #ff5a94 0, #ff2837 100%);
+      }
+      .button-arrow {
+        position: absolute;
+        left: 80px;
+        bottom: 40px;
+      }
+      .button-row {
+        justify-content: center;
+      }
+      .button-forward {
+        position: absolute;
+        right: 80px;
+        bottom: 40px;
+        padding: 40px;
+        font-size: 62px;
+      }
+      .button-stop {
+        position: absolute;
+        right: 300px;
+        bottom: 40px;
+        padding: 25px;
+        font-size: 62px;
+      }
+      
+      /* Add media queries to make the page responsive */
+      @media (max-width: 900px) {
+        .button-arrow {
+          left: 40px;
+          bottom: 40px;
+        }
+        .button-row {
+          flex-direction: column;
+      
+        }
+      
+        .button-forward {
+          right: 40px;
+          bottom: 40px;
+          padding: 40px;
+          font-size: 32px;
+        }
+        .button-stop {
+          right: 210px;
+          bottom: 40px;
+          padding: 25px;
+          font-size: 32px;
+        }
+      }
+      </style>
 
   </head>
   <body>
     <div class="button-arrow">
 
         <div class="button-row">
-            <button class="button-left" ontouchstart="sendCommand('left')" ontouchstart="sendCommands('left')">ซ้าย &larr;</button>
-            <button class="button-right" ontouchstart="sendCommand('right')" ontouchstart="sendCommands('right')">ขวา&rarr;</button>
+            <button class="button-left" ontouchstart="sendCommand(1)"   ontouchend="sendCommand(0)">ซ้าย &larr;</button>
+            <button class="button-right" ontouchstart="sendCommand(2)"  ontouchend="sendCommand(0)">ขวา&rarr;</button>
         </div>
     </div>
     
-    <button class="button-stop" ontouchstart="sendCommand('stop')" ontouchstart="sendCommands('stop')">เบรค</button>
-    <button class="button-forward" ontouchstart="sendCommand('forward')" ontouchstart="sendCommands('forward')">ไป &uarr;</button>
+    <button class="button-stop" ontouchstart="sendCommand(3)" ontouchend="sendCommand(0)">เบรค</button>
+    <button class="button-forward" ontouchstart="sendCommand(4)" ontouchend="sendCommand(0)">ไป &uarr;</button>
+<script>const firebaseConfig = {
+    apiKey: "AIzaSyBvEBRORlJ4-tvuTUHkl7rNeJg1eWzp-w0",
+    authDomain: "arduinorc-a1fcc.firebaseapp.com",
+    databaseURL: "https://arduinorc-a1fcc-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "arduinorc-a1fcc",
+    storageBucket: "arduinorc-a1fcc.appspot.com",
+    messagingSenderId: "353482246377",
+    appId: "1:353482246377:web:ac77b51cd3b812e2254878",
+    measurementId: "G-HGD9TY1F80"
+  };
+  firebase.initializeApp(firebaseConfig);
+  
+  const database = firebase.database();
+	
 
+function sendCommand(command) {
+  database.ref("command").set(command);  
+}
+</script>
   </body>
-</html>
-
 </html>
