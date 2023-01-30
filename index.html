@@ -1,107 +1,110 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Car Control</title>      
     <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.22.0/firebase-database.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <style>
-    #navbar-iframe {
-    height: 0px;
-    visibility: hidden;
-    display: none;
+    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@100&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+    .body{
+      color: #3c4fe0;
     }
-      body {
-        background-image: url("https://awsinsurance.com/wp-content/uploads/2018/03/pexels-photo-228094.jpeg");
-      }
-      button {
-        background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
-        border: 0;
-        border-radius: 10px;
-        box-shadow: rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, rgba(58, 65, 111, .5) 0 -3px 0 inset;
-        box-sizing: border-box;
-        color: #fff;
-        cursor: pointer;
-        font-family: "Kanit", sans-serif;
-        padding: 25px;
-        transition: box-shadow .15s, transform .15s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        white-space: nowrap;
-        will-change: box-shadow, transform;
-        font-size: 32px;
-        bottom: 10px;
-      }
-      button:active {
+    .arrows {
+      font-size: 22px;
+      font-weight: 800;
+      color:rgb(255, 255, 255)(255, 255, 255);
+    }
+    td.button {
+    align-items: center;
+    appearance: none;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border: 0;
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: 'Kanit', sans-serif;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    }
+    td.button:active {
         transform: translate(5px, 5px);
         box-shadow: #e03cbc 0 3px 7px inset;
         background-image: radial-gradient(100% 100% at 100% 0, #ff5a94 0, #ff2837 100%);
       }
-      .button-arrow {
-        position: absolute;
-        left: 80px;
-        bottom: 40px;
-      }
-      .button-row {
-        justify-content: center;
-      }
-      .button-forward {
-        position: absolute;
-        right: 80px;
-        bottom: 40px;
-        padding: 40px;
-        font-size: 62px;
-      }
-      .button-stop {
-        position: absolute;
-        right: 300px;
-        bottom: 40px;
-        padding: 25px;
-        font-size: 62px;
-      }
-      
-      /* Add media queries to make the page responsive */
-      @media (max-width: 900px) {
-        .button-arrow {
-          left: 40px;
-          bottom: 40px;
-        }
-        .button-row {
-          flex-direction: column;
-      
-        }
-      
-        .button-forward {
-          right: 40px;
-          bottom: 40px;
-          padding: 40px;
-          font-size: 32px;
-        }
-        .button-stop {
-          right: 210px;
-          bottom: 40px;
-          padding: 25px;
-          font-size: 32px;
-        }
-      }
+    td.button:focus {
+      box-shadow: #3c4fe0 0 0 0 1.5px inset, rgba(45, 35, 66, .4) 0 2px 4px, rgba(45, 35, 66, .3) 0 7px 13px -3px, #3c4fe0 0 -3px 0 inset;
+    }
 
-      </style>
+    .cambox{
 
+      margin: 40px 0 40px 0; 
+      border-radius: 20px;
+      box-shadow:  rgb(0 215 255 / 77%) -1px 1px 20px 0px;
+
+    }
+
+
+    .noselect {
+      -webkit-touch-callout: none; /* iOS Safari */
+        -webkit-user-select: none; /* Safari */
+         -khtml-user-select: none; /* Konqueror HTML */
+           -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* Internet Explorer/Edge */
+                user-select: none; /* Non-prefixed version, currently
+                                      supported by Chrome and Opera */
+    }
+
+
+    </style>
+  
   </head>
-  <body>
-<center>
-  <iframe width="320" height="300" src="https://7bf5-184-22-245-179.ap.ngrok.io/video"   frameborder="0"></iframe></center>
-    <div class="button-arrow">
-
-        <div class="button-row">
-            <button class="button-left" ontouchstart="sendCommand('left')"   ontouchend="sendCommand('')">ซ้าย &larr;</button>
-            <button class="button-right" ontouchstart="sendCommand('right')"  ontouchend="sendCommand('')">ขวา&rarr;</button>
-        </div>
-    </div>
-    
-    <button class="button-stop" ontouchstart="sendCommand('stop')" ontouchend="sendCommand('')">เบรค</button>
-    <button class="button-forward" ontouchstart="sendCommand('forward')" ontouchend="sendCommand('')">ไป &uarr;</button>
-<script>  const firebaseConfig = {
+  <body class="noselect" align="center" style="background-color:rgb(10, 0, 32)" >
+    <div class="container">
+    <table id="mainTable" style="width:450px;margin:auto;table-layout:fixed" CELLSPACING=10>
+      <tr>
+          <img class= "cambox" id="cameraImage" src="http://172.20.10.13:81/stream"></td>
+      </tr> 
+      <tr>
+      </div>
+        <td></td>
+        <td class="button" ontouchstart="sendCommand('forward')"   ontouchend="sendCommand('')"><span class="arrows" >&#8679; เดินหน้า</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td class="button" ontouchstart="sendCommand('left')"   ontouchend="sendCommand('')"><span class="arrows" >&#8678; ซ้าย</span></td>
+        <td class="button" ontouchstart="sendCommand('')"   ontouchend="sendCommand('')"><span  class="arrows"> เบรค </span></td>
+      
+        <td class="button" ontouchstart="sendCommand('right')"   ontouchend="sendCommand('')"><span class="arrows" >&#8680; ขวา</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td class="button" ontouchstart="sendCommand('backward')"   ontouchend="sendCommand('')"><span class="arrows" >&#8681; ถอยหลัง</span></td>
+        <td></td>
+      </tr>
+      <tr/><tr/>
+      <tr>
+        </td>
+      </tr>              
+    </table>
+  </div>
+  <script>  const firebaseConfig = {
     apiKey: "AIzaSyD04LomWDEZoArNz-ehKtoR_fk7jj7pRLA",
     authDomain: "my-rc-kmutt.firebaseapp.com",
     databaseURL: "https://my-rc-kmutt-default-rtdb.firebaseio.com",
